@@ -6,8 +6,8 @@
 Terraform stores the state of the infrastructure created from the TF files in a file called **Terraform State File**\
 This state will allow terraform to map real world resources to your existing configuration
 
-* Run `terraform init` which in-return will download plugins associated with the provider
-    *.terraform.lock.hcl* file is also created, define explicit version of terraform provider, then if you want to change version of terraform provider, you need to delete that file and run *terraform init* again
+* Run `terraform init` which in-return will download plugins associated with the provider\
+  *.terraform.lock.hcl* file is also created, define explicit version of terraform provider, then if you want to change version of terraform provider, you need to delete that file and run *terraform init* again
 * Run `terraform plan` to see what's going to be provisioned
 * Run `terraform apply` to provision resources
     **Terraform State File** is shown as *terraform.tfstate* file
