@@ -46,6 +46,16 @@ Ex: variable "vpn_ip" {
     }
 ```
 
+## Types of variable
+
+| Type | Description |
+| ------ | ------ |
+| string | a sequence of Unicode characters representing some text, like "hello" |
+| number | a numeric value. The number type can represent both whole numbers like 15 and fractional values like 6.283185 |
+| bool | a boolean value, either true or false. bool values can be used in conditional logic. |
+| list/tuple | a boolean value, either true or false. bool values can be used in conditional logic. |
+| map/object | a group of values identified by named labels, like {name = "Mabel", age = 52} |
+| null | a value that represents absence or omission |
 
 
 
