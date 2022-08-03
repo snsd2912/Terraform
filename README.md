@@ -3,7 +3,7 @@
 * For providers that is not maintained by Hashicorp, you need to add ***required_providers*** block
 
 ## Phases
-Terraform stores the state of the infrastructure created from the TF files in a file called **Terraform State File**
+Terraform stores the state of the infrastructure created from the TF files in a file called **Terraform State File**\
 This state will allow terraform to map real world resources to your existing configuration
 
 * Run `terraform init` which in-return will download plugins associated with the provider
