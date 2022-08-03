@@ -5,3 +5,7 @@ variable "vpn_ip" {
 variable "vpc_cidr" { }
 
 variable "subnet_cidr" { }
+
+variable "access_key" { }
+
+variable "secret_key" { }
