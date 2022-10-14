@@ -4,7 +4,7 @@ provider "aws" {
   secret_key = "YOUR-SECRET-KEY"
 }
 
-zipmap(["pineapple","oranges","strawberry"], ["yellow","orange","red"])
+# zipmap(["pineapple","oranges","strawberry"], ["yellow","orange","red"])
 
 resource "aws_iam_user" "lb" {
   name = "demo-user.${count.index}"
