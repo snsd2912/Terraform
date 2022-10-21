@@ -1,15 +1,5 @@
 # Terraform
 
-#### Table of Contents
-1. [References](#references)
-   * [AWS](#aws)
-   * [Terraform](#terraform)
-2. [Usage](#usage)
-3. [Requirements](#requirements)
-4. [Providers](#providers)
-5. [Inputs](#inputs)
-6. [Outputs](#outputs)
-
 ## Phases
 Terraform stores the state of the infrastructure created from the TF files in a file called **Terraform State File**\
 This state will allow terraform to map real world resources to your existing configuration
@@ -72,6 +62,8 @@ resource "aws_instance" "web" {
 
 ```
 
+### [Module](https://www.terraform.io/language/modules)
+
 ### Variables
 Variables are usually the declared inputs provided by either a calling module or input when running a tf plan/apply in the HCL directory in which it resides. An easy way to think of them is that they are the information that is passed IN.
 
@@ -120,7 +112,7 @@ Ex: variable "vpn_ip" {
     }
 ```
 
-## Locals
+### Locals
 Locals are usually used for data transformation/aggregation/mutation from data derived from variables, other locals, data sources, resources, etc.
 ```
 Ex: locals {
@@ -136,13 +128,26 @@ resource ... {
 }
 ```
 
-## Built-in Functions
-[Documentation](https://www.terraform.io/language/functions)
+### [Data Resources]((https://www.terraform.io/language/data-sources))
 
-## Data Resources
-[Data sources](https://www.terraform.io/language/data-sources) allow Terraform to use information defined outside of Terraform, defined by another separate Terraform configuration, or modified by functions.
+Data sources allow Terraform to use information defined outside of Terraform, defined by another separate Terraform configuration, or modified by functions.
 
-## Dynamic Blocks
+Example: Let's suppose we want to create a new AWS EC2 instance. We want to use an AMI image which were created and uploaded by a Jenkins job using the AWS CLI, and **not managed by Terraform**. As part of the configuration for our Jenkins job, this AMI image will always have a name with the prefix app-.
+
+In this case, we can use the aws_ami data source to obtain information about the most recent AMI image that has the name prefix app-.
+```
+data "aws_ami" "app_ami" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["app-*"]
+  }
+}
+```
+
+### [Dynamic Blocks](https://www.terraform.io/language/expressions/dynamic-blocks)
+
+Example:
 ```
 variable "sg_ports" {
     type    = list(number)
@@ -162,7 +167,9 @@ resource "aws_security_group" "aws_sg" {
 }
 ```
 
-## Count and count index
+## Advance
+
+### Count and count index
 The following syntax will create 8 ec2 instance 
 ```
 Ex: resource "aws_instance" "ec2_test" {
@@ -174,7 +181,7 @@ Ex: resource "aws_instance" "ec2_test" {
 ```
 You can also define a list and assign that list to *name* file in the above example.
 
-## Conditional Expression
+### Conditional Expression
 ```
 EX: 
 variable "something" {
@@ -187,14 +194,18 @@ resource "aws_instance" "ec2_test" {
 }
 ```
 
-## Debugging
+### Debugging
 Set TF_LOG to one of the log levels TRACE, DEBUG, INFO, WARN and ERROR
 ```
 Ex: export TF_LOG=TRACE
     export TF_LOG_PATH=/path/to/log/file
 ```
 
-## Tainting Resource
+### Tainting Resource
 
-## Inport existing resources
+### Inport existing resources
 terraform import
+
+### [Built-in Functions](https://www.terraform.io/language/functions)
+
+## [Terratest](https://github.com/gruntwork-io/terratest)
